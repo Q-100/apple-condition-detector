@@ -18,11 +18,15 @@ Use yolov5 to detect apple conditions and provide apple rating.
 [![CI](https://github.com/tw-in-js/twind/workflows/CI/badge.svg)](https://github.com/tw-in-js/twind/actions?query=workflow%3Aci)
 [![Coverage Status](https://flat.badgen.net/coveralls/c/github/tw-in-js/twind/main?icon=codecov&label&cache=10800)](https://coveralls.io/github/tw-in-js/twind?branch=main)
 
-</div>
+
 
 The Apple condition detector detects the pests, cuts, bruises, and colors of apples and checks their grades in real time. You can use it if you want to know the grade of an apple or what pests you harvested are.
+<div>
 
-<img src="https://user-images.githubusercontent.com/68915940/143449367-a05e0642-139b-4463-8008-a0bb3b81980a.png  width="931" height="486"/>
+<img src="https://user-images.githubusercontent.com/68915940/143449367-a05e0642-139b-4463-8008-a0bb3b81980a.png"  width="200" height="400"/>
+
+
+
 
 ## [Development Environment]()
 - Google colaboratory, local(GPU : 2070super 8GB, RAM : 16GB, CPU : 3700x)
