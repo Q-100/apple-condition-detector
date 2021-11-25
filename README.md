@@ -8,23 +8,24 @@ Use yolov5 to detect apple conditions and provide apple rating.
 
 </p>
 
-[![MIT License](https://flat.badgen.net/github/license/tw-in-js/twind)](https://github.com/tw-in-js/twind/blob/main/LICENSE)
-[![Latest Release](https://flat.badgen.net/npm/v/twind?icon=npm&label&cache=10800&color=blue)](https://www.npmjs.com/package/twind)
-[![Bundle Size](https://flat.badgen.net/bundlephobia/minzip/twind?icon=packagephobia&label&color=blue&cache=10800)](https://bundlephobia.com/result?p=twind 'gzip bundle size (including dependencies)')
-[![Package Size](https://flat.badgen.net/badgesize/brotli/https://cdn.jsdelivr.net/npm/twind/twind.min.js?icon=jsdelivr&label&color=blue&cache=10800)](https://unpkg.com/twind/twind.js 'brotli package size (without dependencies)')
-[![Documentation](https://flat.badgen.net/badge/icon/Documentation?icon=awesome&label)](https://twind.dev)
-[![Github](https://flat.badgen.net/badge/icon/tw-in-js%2Ftwind?icon=github&label)](https://github.com/tw-in-js/twind)
-[![Discord](https://flat.badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/2aP5NkszvD)
-[![CI](https://github.com/tw-in-js/twind/workflows/CI/badge.svg)](https://github.com/tw-in-js/twind/actions?query=workflow%3Aci)
-[![Coverage Status](https://flat.badgen.net/coveralls/c/github/tw-in-js/twind/main?icon=codecov&label&cache=10800)](https://coveralls.io/github/tw-in-js/twind?branch=main)
+<div>
+
+![image](https://img.shields.io/badge/yolov5-6.0-green)
+![image](https://img.shields.io/badge/pytorch-1.10.0%2Bcu111-lightgrey)
+![image](https://img.shields.io/badge/tensorflow-1.15.2v-orange)
+![image](https://img.shields.io/badge/andorid%20studio-%403.5.3-blue)
+![image](https://img.shields.io/badge/roboflow-labeling-red)
+[![Github](https://flat.badgen.net/badge/icon/Q-100?icon=github&label)](https://github.com/Q-100)
 
 
+</div>
 
 The Apple condition detector detects the pests, cuts, bruises, and colors of apples and checks their grades in real time. You can use it if you want to know the grade of an apple or what pests you harvested are.
 </div>
 <div align="center">
 <img src="https://user-images.githubusercontent.com/68915940/143449367-a05e0642-139b-4463-8008-a0bb3b81980a.png"  width="200" height="400"/>
 </div>
+
 
 
 
