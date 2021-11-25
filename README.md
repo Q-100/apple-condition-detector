@@ -88,99 +88,60 @@ If you want to use the dataset from colab,
 curl -L "https://app.roboflow.com/ds/5FcXgt0BjG?key=ElfkiFKHaY" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip
 ```
 -------
-## 📀Apple Class example
+## 📀 Apple Class example
 1. apple : It is a class to check if it is an apple(Using all kinds of apples)
 
 ![image](https://user-images.githubusercontent.com/68915940/143457063-853401a1-59e0-4479-8277-784838a2a5f1.png)
+
 2. apple_A : An apple with superior color(Using only Fuji apples)
 
 ![image](https://user-images.githubusercontent.com/68915940/143457080-68842204-2bc1-4c3b-85ce-0f401523936c.png)
+
 3. apple_B : An apple with medium color(Using only Fuji apples)
 
 ![image](https://user-images.githubusercontent.com/68915940/143457100-28bc1cf5-4a38-4dfe-91c7-ca8f3b580809.png)
+
 4. apple_C : An apple with bed color(Using only Fuji apples)
 
 ![image](https://user-images.githubusercontent.com/68915940/143457118-f5259696-e1fb-4a7b-b9ff-018325113a92.png)
+
 5. dmg_s : Apple with small cuts or weak bruises that can be sold as a prize(Using all kinds of apples)
 
 ![image](https://user-images.githubusercontent.com/68915940/143457137-12c01f15-0d7b-46db-8e51-c7ae73135e3d.png)
+
 6. dms_l : Apple with strong cuts or strong bruises that cannot be sold as a prize(Using all kinds of apples)
 
 ![image](https://user-images.githubusercontent.com/68915940/143457157-c78e1174-9233-4d4c-96c3-5db7bb6fae4b.png)
+
 7. Scab
 
 ![image](https://user-images.githubusercontent.com/68915940/143457168-277bdca6-5b15-4fd4-89e4-e88ea67105e3.png)
+
 8. Anthracnose
 
 ![image](https://user-images.githubusercontent.com/68915940/143457194-c89d7ba9-07af-4c1e-a3ba-0ce8ac0113c2.png)
+
 9. Sooty blotch
 
 ![image](https://user-images.githubusercontent.com/68915940/143457176-aeca2a35-2bed-4679-a6d4-bc4222b9dc20.png)
+
 10. Fly speck
 
 ![image](https://user-images.githubusercontent.com/68915940/143457219-a4aef23d-78f2-46e8-9b54-20b05ebf4951.png)
+
 11. White rot
 
 ![image](https://user-images.githubusercontent.com/68915940/143457209-e4d7dd97-5923-4ee6-880b-1b711baa6802.png)
 
+## 💻 Team
+### [Sangmyung University](https://www.smu.ac.kr/ko/index.do) Graduation Capstone Project
+
+- Advisor : Professor Seongjoo Lee
+- Team Leader : Kyuback Kim (email aderess : opea5954@gmail.com)
+- Team member : Dongeun Kang
+- Team member : Woonam Kim
+
+Demo Video : 
 
 
-Alternatively try the 🚀 [live and interactive demo](https://esm.codes/#aW1wb3J0IHsgdHcgfSBmcm9tICdodHRwczovL2Nkbi5za3lwYWNrLmRldi90d2luZCcKCmRvY3VtZW50LmJvZHkuaW5uZXJIVE1MID0gYAogIDxtYWluIGNsYXNzPSIke3R3YGgtc2NyZWVuIGJnLXB1cnBsZS00MDAgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXJgfSI+CiAgICA8aDEgY2xhc3M9IiR7dHdgZm9udC1ib2xkIHRleHQoY2VudGVyIDV4bCB3aGl0ZSBzbTpncmF5LTgwMCBtZDpwaW5rLTcwMClgfSI+VGhpcyBpcyBUd2luZCE8L2gxPgogIDwvbWFpbj4KYA==) and take a look at the [installation guide](https://twind.dev/handbook/getting-started).
 
-Twind is also available as an [NPM package](https://www.npmjs.com/package/twind):
-
-```
-npm i twind
-```
-
-For seamless integration with existing Tailwind HTML you can use [twind/shim](https://twind.dev/handbook/the-shim.html):
-
-```html
-<script type="module" src="https://cdn.skypack.dev/twind/shim"></script>
-
-<main class="h-screen bg-purple-400 flex items-center justify-center">
-  <h1 class="font-bold text(center 5xl white sm:gray-800 md:pink-700)">This is Twind!</h1>
-</main>
-```
-
-Try `twind/shim` in the 🚀 [live and interactive shim demo](https://esm.codes/#aW1wb3J0ICdodHRwczovL2Nkbi5za3lwYWNrLmRldi90d2luZC9zaGltJwoKZG9jdW1lbnQuYm9keS5pbm5lckhUTUwgPSBgCiAgPG1haW4gY2xhc3M9Imgtc2NyZWVuIGJnLXB1cnBsZS00MDAgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIiPgogICAgPGgxIGNsYXNzPSJmb250LWJvbGQgdGV4dChjZW50ZXIgNXhsIHdoaXRlIHNtOmdyYXktODAwIG1kOnBpbmstNzAwKSI+CiAgICAgIFRoaXMgaXMgVHdpbmQhCiAgICA8L2gxPgogIDwvbWFpbj4KYA==)
-
-This is just the beginning of all the awesome things you can do with Twind. [Check out the handbook](https://twind.dev/handbook/introduction.html) to learn more.
-
-## 💡 Inspiration
-
-It would be untrue to suggest that the design here is totally original. Other than the founders' initial attempts at implementing such a module ([oceanwind](https://github.com/lukejacksonn/oceanwind) and [beamwind](https://github.com/kenoxa/beamwind)) we are truly standing on the shoulders of giants.
-
-- [Tailwind](https://tailwindcss.com/): created a wonderfully thought out API on which the compiler's grammar was defined.
-- [styled-components](https://styled-components.com/): implemented and popularized the advantages of doing CSS-in-JS.
-- [htm](https://github.com/developit/htm): a JSX compiler that proved there is merit in doing runtime compilation of DSLs like JSX.
-- [goober](https://github.com/cristianbote/goober): an impossibly small yet efficient CSS-in-JS implementation that defines critical module features.
-- [otion](https://github.com/kripod/otion): the first CSS-in-JS solution specifically oriented around handling CSS in an atomic fashion.
-- [clsx](https://github.com/lukeed/clsx): a tiny utility for constructing class name strings conditionally.
-- [style-vendorizer](https://github.com/kripod/style-vendorizer): essential CSS prefixing helpers in less than 1KB of JavaScript.
-- [CSSType](https://github.com/frenic/csstype): providing autocompletion and type checking for CSS properties and values.
-
-## 🙏🏾 Sponsors
-
-Support us with a monthly donation and help us continue our activities.
-
-[[GitHub Sponsor](https://github.com/sponsors/tw-in-js) | [Open Collective](https://opencollective.com/twind)]
-
-<a href="https://github.com/jordwalke" target="_blank"><img style="border-radius: 50%!important" src="https://avatars.githubusercontent.com/u/977348?v=4" width="64" height="64" alt="@jordwalke"></a>
-<a href="https://github.com/tylerforesthauser" target="_blank"><img style="border-radius: 50%!important" src="https://avatars.githubusercontent.com/u/1226786?v=4" width="64" height="64" alt="@tylerforesthauser"></a>
-<a href="https://github.com/holic" target="_blank"><img style="border-radius: 50%!important" src="https://avatars.githubusercontent.com/u/508855?v=4" width="64" height="64" alt="@holic"></a>
-<a href="https://github.com/Andrewnt219" target="_blank"><img style="border-radius: 50%!important" src="https://avatars.githubusercontent.com/u/52666982?v=4" width="64" height="64" alt="@Andrewnt219"></a>
-<a href="https://opencollective.com/twind/backer/0/website" target="_blank"><img src="https://opencollective.com/twind/backer/0/avatar.svg"></a>
-<a href="https://opencollective.com/twind/backer/1/website" target="_blank"><img src="https://opencollective.com/twind/backer/1/avatar.svg"></a>
-<a href="https://opencollective.com/twind/backer/2/website" target="_blank"><img src="https://opencollective.com/twind/backer/2/avatar.svg"></a>
-
-<a href="https://opencollective.com/twind/sponsor/0/website" target="_blank"><img src="https://opencollective.com/twind/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/twind/sponsor/1/website" target="_blank"><img src="https://opencollective.com/twind/sponsor/1/avatar.svg"></a>
-
-## 🤝 Contributing
-
-We are excited that you are interested in contributing to this project! We've put together a whole [contribution guide](https://github.com/tw-in-js/twind/blob/main/CONTRIBUTING.md) to get you started.
-
-## ⚖️ License
-
-The [MIT license](https://github.com/tw-in-js/twind/blob/main/LICENSE) governs your use of Twind.
