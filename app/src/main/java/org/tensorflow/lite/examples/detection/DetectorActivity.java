@@ -41,10 +41,12 @@ import android.widget.Toast;
 import android.os.AsyncTask;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.jsoup.Jsoup;
@@ -61,6 +63,7 @@ import org.tensorflow.lite.examples.detection.tflite.DetectorFactory;
 import org.tensorflow.lite.examples.detection.tflite.YoloV5Classifier;
 import org.tensorflow.lite.examples.detection.tracking.MultiBoxTracker;
 
+
 /**
  * An activity that uses a TensorFlowMultiBoxDetector and ObjectTracker to detect and then track
  * objects.
@@ -69,7 +72,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     private static final Logger LOGGER = new Logger();
 
     private static final DetectorMode MODE = DetectorMode.TF_OD_API;
-    private static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.65f;
+    private static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.2f;
     private static final boolean MAINTAIN_ASPECT = true;
     private static final Size DESIRED_PREVIEW_SIZE = new Size(640, 640);
     private static final boolean SAVE_PREVIEW_BITMAP = false;
@@ -97,6 +100,8 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     public static Set<String> set = new HashSet<>();
 
     private String htmlContentInStringFormat;
+    public HashMap<String, Float> map = new HashMap<String, Float>();
+    public int applegrade;
     String link;
 
 
@@ -290,6 +295,16 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                                 canvas.drawRect(location, paint);
 
                                 cropToFrameTransform.mapRect(location);
+                                /*map.put(result.getTitle(),result.getConfidence());
+                                if(result.getTitle().equals("색(상)") && result.getConfidence()>map.containsValue("색(상)")){
+
+                                }
+                                else if(result.getTitle().equals("색(상)")){
+
+                                }
+                                else if(result.getTitle().equals("색(상)")){
+
+                                }*/
 
                                 result.setLocation(location);
                                 mappedRecognitions.add(result);
@@ -306,15 +321,56 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                                     @Override
                                     public void run() {
                                         try {
-                                            ArrayAdapter foodadapter = (ArrayAdapter) foodView.getAdapter();
+                                            ArrayAdapter appleadapter = (ArrayAdapter) appleView.getAdapter();
 
                                             for (final MultiBoxTracker.TrackedRecognition recognition : tracker.trackedObjects) {
                                                 set.add(recognition.title);
-                                                if (!foodStrings.contains(recognition.title)) {
-                                                    foodStrings.add(recognition.title);
+
+                                                if(recognition.title.equals("색(상)")){
+                                                    if(appleStrings.contains("색(중)")){
+                                                        appleStrings.remove("색(중)");
+                                                        appleStrings.add(recognition.title);
+                                                    }
+                                                    else if(appleStrings.contains("색(하)")){
+                                                        appleStrings.remove("색(하)");
+                                                        appleStrings.add(recognition.title);
+                                                    }
+                                                    else if(!appleStrings.contains("색(상)")){
+                                                        appleStrings.add(recognition.title);
+                                                    }
+                                                }
+                                                else if(recognition.title.equals("색(중)")){
+                                                    if(appleStrings.contains("색(상)")){
+                                                        appleStrings.remove("색(상)");
+                                                        appleStrings.add(recognition.title);
+                                                    }
+                                                    else if(appleStrings.contains("색(하)")){
+                                                        appleStrings.remove("색(하)");
+                                                        appleStrings.add(recognition.title);
+                                                    }
+                                                    else if(!appleStrings.contains("색(중)")){
+                                                        appleStrings.add(recognition.title);
+                                                    }
+
+                                                }
+                                                else if(recognition.title.equals("색(하)")){
+                                                    if(appleStrings.contains("색(중)")){
+                                                        appleStrings.remove("색(중)");
+                                                        appleStrings.add(recognition.title);
+                                                    }
+                                                    else if(appleStrings.contains("색(상)")){
+                                                        appleStrings.remove("색(상)");
+                                                        appleStrings.add(recognition.title);
+                                                    }
+                                                    else if(!appleStrings.contains("색(하)")){
+                                                        appleStrings.add(recognition.title);
+                                                    }
+                                                }
+                                                else if (!appleStrings.contains(recognition.title)) {
+                                                    appleStrings.add(recognition.title);
                                                 }
                                             }
-                                            foodadapter.notifyDataSetChanged();
+                                            appleadapter.notifyDataSetChanged();
                                             JsoupAsyncTask jsoupAsyncTask = new JsoupAsyncTask();
                                             jsoupAsyncTask.execute();
                                         } catch (Exception e) {
@@ -342,22 +398,41 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
         @Override
         protected Void doInBackground(Void... params) {
-            try {
+            //try {
                 String urls = "https://www.10000recipe.com/recipe/list.html?q=";
                 String tail = "&query=&cat1=&cat2=&cat3=&cat4=&fct=&order=accuracy&lastcate=order&dsearch=&copyshot=&scrap=&degree=&portion=&time=&niresource=";
                 String one_tail = "&query=&cat1=&cat2=&cat3=&cat4=&fct=&order=reco&lastcate=order&dsearch=&copyshot=&scrap=&degree=&portion=&time=&niresource=";
-                if (foodStrings.size() == 1) {
-                    urls += foodStrings.get(0);
+
+                if((appleStrings.size()==1 && appleStrings.contains("색(상)") ) ||  (appleStrings.size()==2 && appleStrings.contains("색(상)") && appleStrings.contains("사과"))){
+                    applegrade=1;
+                    System.out.println("사과 선물용");
+                }
+                else if(appleStrings.contains("탄저병")||appleStrings.contains("그을음점무늬병")||appleStrings.contains("검은별무늬병")||appleStrings.contains("그을음병")||appleStrings.contains("겹무늬썩음병")){
+                    applegrade=4;
+                    System.out.println("비료용 등급입니다.");
+                }
+                else if((appleStrings.contains("색(상)")&&appleStrings.contains("약한상처")&&!appleStrings.contains("강한상처"))||(appleStrings.contains("색(중)") && appleStrings.contains("약한상처") && !appleStrings.contains("강한상처")) ||
+                        (appleStrings.contains("색(중)") && appleStrings.contains("사과")&&!appleStrings.contains("강한상처"))){
+                    applegrade=2;
+                    System.out.println("가정용");
+                }
+                else if(((appleStrings.contains("강한성처")||appleStrings.contains("색(하)")||(appleStrings.contains("강한성처")||appleStrings.contains("약한상처"))))){
+                    applegrade=3;
+                    System.out.println("착즙용");
+                }
+                /*
+                if (appleStrings.size() == 1) {
+                    urls += appleStrings.get(0);
                     String food_one_url = urls + one_tail;
                     Document doc = Jsoup.connect(food_one_url).get();
                     Elements title = doc.select(".rcp_m_list2").select(".common_sp_list_li").select(".common_sp_caption").select(".common_sp_caption_tit");
                     link = doc.select(".rcp_m_list2").select(".common_sp_list_li").select("div[class=common_sp_thumb] a").attr("href");
                     htmlContentInStringFormat = title.get(0).text();
                 }
-                else if (foodStrings.size() == 2){
-                    for (int i = 0; i < foodStrings.size(); i++) {
-                        urls += foodStrings.get(i);
-                        if (i + 1 == foodStrings.size()) {
+                else if (appleStrings.size() == 2){
+                    for (int i = 0; i < appleStrings.size(); i++) {
+                        urls += appleStrings.get(i);
+                        if (i + 1 == appleStrings.size()) {
                             continue;
                         } else
                             urls += "+";
@@ -369,10 +444,10 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                     htmlContentInStringFormat = title.get(0).text();
 
                 }
-                else if (foodStrings.size() != 0){
-                    for (int i = 0; i < foodStrings.size(); i++) {
-                        urls += foodStrings.get(i);
-                        if (i + 1 == foodStrings.size()) {
+                else if (appleStrings.size() != 0){
+                    for (int i = 0; i < appleStrings.size(); i++) {
+                        urls += appleStrings.get(i);
+                        if (i + 1 == appleStrings.size()) {
                             continue;
                         } else
                             urls += "+";
@@ -387,29 +462,36 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
-            textView.setText("현재 추천 요리 : "+ htmlContentInStringFormat);
+           // textView.setText("현재 추천 요리 : "+ htmlContentInStringFormat);
         }
     }
 
     public void onButton2Clicked(View view) {
-        String urls = "https://www.10000recipe.com/";
-        if (foodStrings.size() == 0) {
+       // String urls = "https://www.10000recipe.com/";
+        if (!(appleStrings.contains("색(상)")||appleStrings.contains("색(중)")||appleStrings.contains("색(하)"))){
             Toast.makeText(
                     this,
-                    "음식을 먼저 인식시켜주세요",
+                    "사과를 다시 인식시켜주세요.",
                     Toast.LENGTH_LONG)
                     .show();
+            appleStrings.clear();
+            appleAdapter.notifyDataSetChanged();
+
         } else {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urls+link));
+            Intent intent = new Intent(getApplicationContext(), final_view.class);
+            intent.putExtra("grade",applegrade);
             startActivity(intent);
+            appleStrings.clear();
+            appleAdapter.clear();
         }
     }
+
 
 
     @Override

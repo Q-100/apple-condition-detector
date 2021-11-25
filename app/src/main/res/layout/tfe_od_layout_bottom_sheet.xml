@@ -29,17 +29,16 @@
             android:src="@drawable/icn_chevron_up" />
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/rec_food"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="현재 추천 요리 : " />
+
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:background="#C8F43333"
         android:onClick="onButton2Clicked"
-        android:text="추천 요리 레시피 확인하기"
+        android:text="사과등급 확인하기"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
@@ -105,7 +104,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="인식한 식재료" />
+        android:text="현재 사과상태" />
 
 
     <LinearLayout
@@ -114,7 +113,7 @@
         android:orientation="horizontal">
 
         <ListView
-            android:id="@+id/food_list"
+            android:id="@+id/apple_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

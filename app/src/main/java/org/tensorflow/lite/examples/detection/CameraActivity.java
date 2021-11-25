@@ -19,6 +19,7 @@ package org.tensorflow.lite.examples.detection;
 import android.Manifest;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.hardware.Camera;
@@ -30,12 +31,11 @@ import android.media.Image;
 import android.media.Image.Plane;
 import android.media.ImageReader;
 import android.media.ImageReader.OnImageAvailableListener;
-import android.os.AsyncTask;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Message;
 import android.os.Trace;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +48,6 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -60,9 +59,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.tensorflow.lite.examples.detection.env.ImageUtils;
 import org.tensorflow.lite.examples.detection.env.Logger;
 
@@ -92,6 +88,7 @@ public abstract class CameraActivity extends AppCompatActivity
   private Runnable postInferenceCallback;
   private Runnable imageConverter;
   protected ArrayList<String> modelStrings = new ArrayList<String>();
+  public ArrayAdapter<String> appleAdapter;
 
   private LinearLayout bottomSheetLayout;
   private LinearLayout gestureLayout;
@@ -103,7 +100,7 @@ public abstract class CameraActivity extends AppCompatActivity
   protected ListView deviceView;
   protected TextView threadsTextView;
   protected ListView modelView;
-  public ListView foodView;
+  public ListView appleView;
   /** Current indices of device and model. */
   int currentDevice = -1;
   int currentModel = -1;
@@ -112,7 +109,7 @@ public abstract class CameraActivity extends AppCompatActivity
   String nums;
 
   ArrayList<String> deviceStrings = new ArrayList<String>();
-  ArrayList<String> foodStrings = new ArrayList<String>();
+  ArrayList<String> appleStrings = new ArrayList<String>();
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -131,29 +128,53 @@ public abstract class CameraActivity extends AppCompatActivity
     } else {
       requestPermission();
     }
-    //여기가 음식리스트
+    //여기가 사과리스트
     final Bundle bundle = new Bundle();
-    foodView = findViewById(R.id.food_list);
-    textView = (TextView) findViewById(R.id.rec_food);
+    appleView = findViewById(R.id.apple_list);
+   // textView = (TextView) findViewById(R.id.rec_apple);
 
-    ArrayAdapter<String> foodAdapter =
+    appleAdapter =
             new ArrayAdapter<>(
-                    CameraActivity.this , R.layout.foodview_row, R.id.food_row_text, foodStrings);
-    foodView.setAdapter(foodAdapter);
-//    foodView.setOnItemClickListener(
-//            new AdapterView.OnItemClickListener() {
-//              @Override
-//              public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//              }
-//            });
-    foodView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    CameraActivity.this , R.layout.appleview_row, R.id.apple_row_text, appleStrings);
+    appleView.setAdapter(appleAdapter);
+    appleView.setOnItemClickListener(
+            new AdapterView.OnItemClickListener() {
+              @Override
+              public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                  if(appleStrings.get(position).equals("탄저병")){
+                    String urls = "https://ncpms.rda.go.kr/mobile/MobileSicknsDtlR.ms?hiKncrCode=FT&sKncrCode=FT010601&dtlKey=D00000884&pageIndex=1";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urls));
+                    startActivity(intent);
+                  }
+                  else if(appleStrings.get(position).equals("그을음점무늬병")){
+                    String urls = "https://ncpms.rda.go.kr/mobile/MobileSicknsDtlR.ms?hiKncrCode=FT&sKncrCode=FT010601&dtlKey=D00000899&pageIndex=2";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urls));
+                    startActivity(intent);
+                  }
+                  else if(appleStrings.get(position).equals("검은별무늬병")){
+                    String urls = "https://ncpms.rda.go.kr/mobile/MobileSicknsDtlR.ms?hiKncrCode=FT&sKncrCode=FT010601&dtlKey=D00000898&pageIndex=1";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urls));
+                    startActivity(intent);
+                  }
+                  else if(appleStrings.get(position).equals("겹무늬썩음병")){
+                    String urls = "https://ncpms.rda.go.kr/mobile/MobileSicknsDtlR.ms?hiKncrCode=FT&sKncrCode=FT010601&dtlKey=D00000881&pageIndex=1";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urls));
+                    startActivity(intent);
+                  }
+                  else if(appleStrings.get(position).equals("그을음병")){
+                    String urls = "https://ncpms.rda.go.kr/mobile/MobileSicknsDtlR.ms?hiKncrCode=FT&sKncrCode=FT010601&dtlKey=D00000908&pageIndex=2";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urls));
+                    startActivity(intent);
+                  }
+              }
+            });
+    appleView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
       @Override
       public boolean onItemLongClick(AdapterView<?> parent, View view,
                                      int position, long id) {
-        foodStrings.remove(position);
-        foodAdapter.notifyDataSetChanged();
+        appleStrings.remove(position);
+        appleAdapter.notifyDataSetChanged();
         // 이벤트 처리 종료 , 여기만 리스너 적용시키고 싶으면 true , 아니면 false
         return true;
       }
